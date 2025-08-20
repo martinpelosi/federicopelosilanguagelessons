@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<!-- saved from url=(0082)file:///C:/Users/Praewa%20Saelee/Desktop/77777/Clases%20de%20Idiomas%20Online.html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clases de Idiomas Online</title>
+
+<style>
+  :root {
+    --bg: linear-gradient(135deg, #2e2e2e, #1c1c1c);
+    --panel: #111319;
+    --text: #e7e9f3;
+    --muted: #8a90a6;
+    --blue: #3C3B6E;
+    --red: #B22234;
+    --white: #ffffff;
+    --radius: 12px;
+    --shadow: 0 8px 24px rgba(0,0,0,0.3);
+    --font: 'Segoe UI', Roboto, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; }
+  a { text-decoration: none; color: inherit; }
+  .muted { color: var(--muted); }
+  .container { width: min(1200px, 90%); margin: auto; }
+
+  /* Navbar */
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; flex-wrap: wrap; }
+  .nav-links { display: flex; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .nav-links a { font-weight: 600; color: var(--text); transition: color 0.2s; }
+  .nav-links a:hover { color: var(--red); }
+
+  /* Language selector */
+  .lang-select { cursor: pointer; color: var(--white); font-weight: 600; margin-left: .5rem; }
+  .lang-select span { margin-left: .25rem; text-decoration: underline; }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    padding: .8rem 1.5rem; border-radius: 999px; font-weight: 700; border: 2px solid var(--red);
+    cursor: pointer; background-color: var(--blue); color: var(--white); transition: all .2s ease;
+  }
+  .btn:hover { background-color: var(--white); color: var(--blue); box-shadow: 0 8px 20px rgba(178,34,52,.5); }
+  .btn.secondary { background-color: var(--white); color: var(--blue); border: 2px solid var(--red); }
+  .btn.secondary:hover { background-color: var(--blue); color: var(--white); }
+
+  /* Hero */
+  .hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 2rem; align-items: center; padding: 5rem 0; }
+  .hero h1 { font-size: clamp(2rem,5vw,3rem); margin-bottom: 1rem; }
+  .hero p { font-size: 1.1rem; color: var(--muted); margin-bottom: 1.5rem; }
+  .hero-card { background: var(--panel); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  .hero-card img, .hero-card video { width: 100%; height: auto; display: block; border-radius: var(--radius); }
+
+  section { padding: 4rem 0; }
+  section h2 { font-size: 2rem; margin-bottom: 2rem; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+  .card { background: var(--panel); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow); transition: transform .2s; position: relative; }
+  .card:hover { transform: translateY(-3px); }
+  .pricing { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; text-align: center; }
+  .price { font-size: 1.8rem; font-weight: 800; margin: .5rem 0 1rem; }
+
+  /* TEACHER SECTION */
+  .teacher-grid {
+    display: grid;
+    grid-template-columns: minmax(260px,320px) 1fr;
+    grid-template-areas: "photo info";
+    column-gap: 2rem;
+    align-items: start;
+  }
+  .teacher-photo { grid-area: photo; }
+  .teacher-photo img {
+    width: 100%; max-width: 320px; border-radius: var(--radius); box-shadow: var(--shadow); display: block;
+  }
+  .teacher-info { grid-area: info; display: flex; flex-direction: column; gap: 1rem; }
+  .teacher-info h3 { font-size: 1.8rem; margin-bottom: .5rem; }
+  .teacher-info p { color: var(--muted); font-size: 1rem; line-height: 1.5; }
+
+  /* PLAN DE ESTUDIO (mantenido a la derecha del profesor) */
+  #plan de estudios .grid-3 { align-items: stretch; }
+  /* Adorno esquina: letras/números de colores */
+  .corner-text {
+    position: absolute;
+    top: -10px; right: 10px;
+    font-size: 4.5rem; font-weight: 900;
+    opacity: 0.16; transform: rotate(-20deg);
+    pointer-events: none; user-select: none;
+  }
+  .corner-blue { color: #60a5fa; }   /* azul */
+  .corner-green { color: #34d399; }  /* verde */
+  .corner-red { color: #f87171; }    /* rojo */
+
+  /* Reviews: estrellas */
+  .stars { color: #fbbf24; font-size: 1.1rem; margin-bottom: .5rem; }
+
+  /* CONTACTO */
+  .contact-wrap { display: flex; justify-content: center; }
+  .form-card {
+    width: 100%; max-width: 720px; background: var(--panel);
+    border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.5rem;
+  }
+  .form-card h3 { margin-bottom: 1rem; }
+
+  input, textarea {
+    width: 100%; padding: 1rem; border-radius: var(--radius);
+    border: 1px solid #242a3d; background: #0f1320; color: var(--text);
+    outline: none; font-size: 1rem;
+  }
+  input:focus, textarea:focus { border-color: var(--blue); box-shadow: 0 0 0 6px rgba(60,59,110,0.15); }
+  textarea { min-height: 140px; }
+
+  footer { padding: 2rem 0; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; color: var(--muted); font-size: .95rem; }
+  .floating { position: fixed; right: 1rem; bottom: 1rem; }
+  .fab { background: var(--blue); color: var(--white); padding: .9rem 1rem; border-radius: 999px; font-weight: 800; border: 2px solid var(--red); box-shadow: var(--shadow); transition: all .2s ease; }
+  .fab:hover { background-color: var(--white); color: var(--blue); box-shadow: 0 8px 20px rgba(178,34,52,.5); }
+
+  @media (max-width: 980px) {
+    .hero { grid-template-columns: 1fr; }
+    .grid-3, .pricing { grid-template-columns: 1fr; }
+    .teacher-grid {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "photo"
+        "info";
+      row-gap: 1.2rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="container">
+  <div class="brand"><strong data-es="Clases de Idiomas" data-en="Spanish & English Lessons by Federico Pelosi ">Clases de ingles con Federico Pelosi</strong></div>
+  <div class="nav-links">
+    <!-- CORREGIDO: enlaces internos con hash -->
+    <a href="#plan de estudio" data-es="Plan De Estudio" data-en="Study Program">Plan de estudio</a>
+    <a href="#pricing" data-es="Precios" data-en="Pricing">Precios</a>
+    <a href="#testimonials" data-es="Reseñas" data-en="Reviews">Reseñas</a>
+    <a href="#contact" class="btn small" data-es="Reservar" data-en="Book">Reservar</a>
+    <div class="lang-select">🌐 <span id="lang-es">ES</span> | <span id="lang-en">EN</span></div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="container hero">
+  <div class="hero-card">
+    <img src="./Clases de Idiomas Online_files/laptop.jpg" alt="Clases online desde tu laptop">
+  </div>
+
+  <div>
+    <h1 data-es="Aprende inglés online de manera efectiva" data-en="Learn Spanish Online Effectively">Aprende inglés online de manera efectiva</h1>
+    <p data-es="Clases personalizadas: conversación, gramática, vocabulario y preparación de exámenes." data-en="Personalized classes: conversation, grammar, vocabulary, and exam prep.">Clases personalizadas: conversación, gramática, vocabulario y preparación de exámenes.</p>
+    <div style="display:flex; gap:1rem;">
+      <!-- CORREGIDO -->
+      <a class="btn" href="#contact" data-es="Reservar clase" data-en="Book Lesson">Reservar clase</a>
+      <a class="btn secondary" href="#Study Program" data-es="Ver plan" data-en="View Plan">Ver plan</a>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT TEACHER + CURRICULUM MOVIDO AQUI (como versiones previas funcionales) -->
+<section class="container" id="teacher">
+  <h2 data-es="Conoce a tu profesor" data-en="Meet Your Teacher">Conoce a tu profesor</h2>
+
+  <div class="teacher-grid">
+    <div class="teacher-photo">
+      <img src="./Clases de Idiomas Online_files/profesor.jpg" alt="Profesor Federico Pelosi">
+    </div>
+
+    <div class="teacher-info">
+      <h3>Federico Pelosi</h3>
+      <p class="muted" data-es="Soy profesor de idiomas con más de 10 años de experiencia en clases online y presenciales. He ayudado a estudiantes de todas las edades a mejorar su gramática, vocabulario y fluidez conversacional. Mi enfoque es práctico, dinámico y adaptado a tus objetivos." data-en="I am a language teacher with over 10 years of experience in online and in-person classes. I have helped students of all ages improve their grammar, vocabulary, and conversational fluency. My approach is practical, dynamic, and tailored to your goals.">Soy profesor de idiomas con más de 10 años de experiencia en clases online y presenciales. He ayudado a estudiantes de todas las edades a mejorar su gramática, vocabulario y fluidez conversacional. Mi enfoque es práctico, dinámico y adaptado a tus objetivos.</p>
+      <p>Email: <a href="mailto:martinpelosi2009@gmail.com">martinpelosi2009@gmail.com</a></p>
+      <p>WhatsApp: <a href="https://wa.me/34697791724" target="_blank" rel="noopener">+34 697791724</a></p>
+      <div style="display:flex; gap:1rem; margin-top:1rem;">
+        <!-- CORREGIDO -->
+        <a class="btn" href="#contact" data-es="Reservar clase" data-en="Book Lesson">Reservar clase</a>
+        <a class="btn secondary" href="#Study Program" data-es="Ver plan" data-en="View Plan">Ver plan</a>
+      </div>
+
+      <!-- CURRICULUM (MOVIDO A LA DERECHA DEL PROFESOR) -->
+      <div id="curriculum" style="margin-top:1.5rem;">
+        <h3 data-es="Plan de estudios paso a paso" data-en="Step-by-Step Study Program">Plan de estudios paso a paso</h3>
+        <div class="grid-3">
+          <div class="card">
+            <!-- Adorno esquina -->
+            <div class="corner-text corner-blue">A1</div>
+            <h4 data-es="Fundamentos" data-en="Foundations">Fundamentos</h4>
+            <p class="muted" data-es="Gramática y vocabulario esencial para empezar desde cero." data-en="Essential grammar and vocabulary to start from scratch.">Gramática y vocabulario esencial para empezar desde cero.</p>
+          </div>
+          <div class="card">
+            <div class="corner-text corner-green">B1</div>
+            <h4 data-es="Conversación" data-en="Conversation">Conversación</h4>
+            <p class="muted" data-es="Práctica de conversacion y comprension auditiva con seguimiento personalizado." data-en="Conversation and listening practice with personalized feedback.">Práctica de speaking y listening con seguimiento personalizado.</p>
+          </div>
+          <div class="card">
+            <div class="corner-text corner-red">C1</div>
+            <h4 data-es="Exámenes" data-en="Exams">Exámenes</h4>
+            <p class="muted" data-es="Preparación DELE y otros certificados con simulaciones reales." data-en="DELE and other certifications prep with real simulations.">Preparación DELE y otros certificados con simulaciones reales.</p>
+          </div>
+        </div>
+      </div>
+      <!-- /Study Program -->
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="container" id="pricing">
+  <h2 data-es="Planes y precios" data-en="Plans &amp; Pricing">Planes y precios</h2>
+  <div class="pricing">
+    <div class="card">
+      <h3 data-es="Individual" data-en="Individual">Individual</h3>
+      <p class="muted" data-es="1 clase privada / semana" data-en="1 private class/week">1 clase privada / semana</p>
+      <p class="price">€22</p>
+      <!-- CORREGIDO -->
+      <a class="btn" href="#contact" data-es="Reservar" data-en="Book">Reservar</a>
+    </div>
+    <div class="card">
+      <h3 data-es="Mensual" data-en="Monthly">Mensual</h3>
+      <p class="muted" data-es="4 clases privadas / mes" data-en="4 private classes/month">4 clases privadas / mes</p>
+      <p class="price">€79</p>
+      <!-- CORREGIDO -->
+      <a class="btn" href="#contact" data-es="Reservar" data-en="Book">Reservar</a>
+    </div>
+    <div class="card">
+      <h3 data-es="Intensivo" data-en="Intensive">Intensivo</h3>
+      <p class="muted" data-es="8 clases privadas / mes" data-en="8 private classes/month">8 clases privadas / mes</p>
+      <p class="price">€149</p>
+      <!-- CORREGIDO -->
+      <a class="btn" href="#contact" data-es="Reservar" data-en="Book">Reservar</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="container" id="testimonials">
+  <h2 data-es="Opiniones de estudiantes" data-en="Student Reviews">Opiniones de estudiantes</h2>
+  <div class="grid-3">
+    <!-- ES: reseñas para INGLÉS / EN: reseñas distintas para ESPAÑOL -->
+    <div class="card">
+      <div class="stars" aria-hidden="true">★★★★★</div>
+      <p class="muted" data-es="“Las clases son muy interactivas y me ayudaron a ganar confianza al hablar.” — Ana M." data-en="“I started from zero and can now hold everyday conversations in Spanish.” — James K.">“Las clases son muy interactivas y me ayudaron a ganar confianza al hablar.” — Ana M.</p>
+    </div>
+    <div class="card">
+      <div class="stars" aria-hidden="true">★★★★★</div>
+      <p class="muted" data-es="“El profesor explica de forma clara y siempre resuelve mis dudas.” — Carlos G." data-en="“Lessons are practical and focused on real-life situations—great for travel.” — Emily T.">“El profesor explica de forma clara y siempre resuelve mis dudas.” — Carlos G.</p>
+    </div>
+    <div class="card">
+      <div class="stars" aria-hidden="true">★★★★★</div>
+      <p class="muted" data-es="“Gracias a este curso mejoré mi inglés en el trabajo y ahora me comunico mejor con mis colegas.” — Lucía R." data-en="“The teacher’s feedback improved my Spanish pronunciation and listening a lot.” — Michael B.">“Gracias a este curso mejoré mi inglés en el trabajo y ahora me comunico mejor con mis colegas.” — Lucía R.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="container" id="contact">
+  <h2 data-es="Contacto" data-en="Contact">Contacto</h2>
+  <div class="contact-wrap">
+    <div class="form-card">
+      <h3 data-es="Envíame un mensaje" data-en="Send me a message">Envíame un mensaje</h3>
+      <form onsubmit="event.preventDefault(); alert('Mensaje enviado!');">
+        <div style="display:grid; gap:1rem;">
+          <input type="text" name="name" data-es="Tu nombre" data-en="Your Name" placeholder="Tu nombre" required="">
+          <input type="email" name="email" data-es="Tu email" data-en="Your Email" placeholder="Tu email" required="">
+          <textarea name="message" data-es="Tu mensaje" data-en="Your Message" placeholder="Tu mensaje" required=""></textarea>
+          <button class="btn" type="submit" data-es="Enviar" data-en="Send">Enviar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>© 2024 Clases de Idiomas · Todos los derechos reservados</footer>
+<div class="floating"><a class="fab" href="https://wa.me/34697791724" target="_blank" rel="noopener">💬</a></div>
+
+<script>
+  const langES = document.getElementById('lang-es');
+  const langEN = document.getElementById('lang-en');
+
+  function setLanguage(lang) {
+    const elements = document.querySelectorAll('[data-es]');
+    elements.forEach(el => {
+      if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
+        el.placeholder = lang === 'es' ? el.getAttribute('data-es') : el.getAttribute('data-en');
+      } else {
+        el.textContent = lang === 'es' ? el.getAttribute('data-es') : el.getAttribute('data-en');
+      }
+    });
+    document.documentElement.lang = lang;
+  }
+
+  // Activadores idioma
+  langES.addEventListener('click', () => setLanguage('es'));
+  langEN.addEventListener('click', () => setLanguage('en'));
+</script>
+
+
+</body></html>
